@@ -8,17 +8,7 @@ if (isset($_POST['submit'])) {
     //Kontrollerar om fälten användarnamn och lösenord är toma
     $kund_id = $_POST['kund_id'];
     $password = $_POST['password'];
-    $user = login($kund_id, $password);
-    if ($user) {
-        $_SESSION['kund_id'] = $user['kund_id'];
-        $_SESSION['password'] = $password;
-        $_SESSION['email'] = $user['email'];
-        $_SESSION['namn'] = $user['namn'];
-        header('Location: index.php');
-        exit();
-    } else {
-        echo "Invalid ID or password";
-    }
+    $kund = login($kund_id, $password);
 }
 
 ?>
@@ -33,7 +23,7 @@ if (isset($_POST['submit'])) {
 
 <body>
     <form method="post" action="">
-        <label for="kund_id">Kund ID:</label>
+        <label for="kund_id">Admin ID:</label>
         <input type="text" id="kund_id" name="kund_id" required>
         <br>
         <label for="password">Password:</label>
@@ -41,7 +31,6 @@ if (isset($_POST['submit'])) {
         <br>
         <input type="submit" name="submit" value="Login">
     </form>
-    <p><a href="signup.php">Saknar du konto?</a></p>
 </body>
 
 </html>
