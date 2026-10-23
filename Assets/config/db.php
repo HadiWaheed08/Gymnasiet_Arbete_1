@@ -2,7 +2,7 @@
 $hostname_hyrning = "localhost";
 $database_hyrning = "hyrning";
 $username_hyrning = "hyrning";
-$password_hyrning = "hadi";
+$password_hyrning = "Hadi";
 
 
 try {

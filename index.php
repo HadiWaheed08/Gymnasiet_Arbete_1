@@ -1,5 +1,5 @@
 <?php
-require_once 'assets/config/db.php';
+require_once 'Assets/config/db.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
