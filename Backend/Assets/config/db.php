@@ -1,15 +1,14 @@
 <?php
-$hostname_forumtest = "localhost";
-$database_forumtest = "hyrning";
-$username_forumtest = "hyrning";
-$password_forumtest = "hyrning";
+$hostname_hyrning = "localhost";
+$database_hyrning = "hyrning";
+$username_hyrning = "hyrning";
+$password_hyrning = "hadi";
 
 
 try {
-    $forum = new PDO("mysql:host=$hostname_forumtest;
-  dbname=$database_forumtest", $username_forumtest, $password_forumtest);
+    $hyrning = new PDO("mysql:host=$hostname_hyrning;dbname=$database_hyrning", $username_hyrning, $password_hyrning);
     // set the PDO error mode to exception
-    $forum->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $hyrning->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     echo "Connected successfully"; // denna rad kan tas bort om allt fungerar
 } catch (PDOException $e) {
     echo "Connection failed: " . $e->getMessage();

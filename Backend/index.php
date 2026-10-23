@@ -1,3 +1,6 @@
+<?php
+require_once 'assets/config/db.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
