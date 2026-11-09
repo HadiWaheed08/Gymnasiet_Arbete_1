@@ -1,15 +1,24 @@
 <?php
-require_once 'assets/functions.php';
+require_once 'Assets/functions.php';
 //Initierar sessionshantering
 session_start();
 //Kontrollerar om logga in-knappen har tryckts
 if (isset($_POST['submit'])) {
     //Deklarerar en vektor för att spara felmeddelanden
     //Kontrollerar om fälten användarnamn och lösenord är toma
-    $kund_id = $_POST['kund_id'];
+    $username = $_POST['username'];
     $password = $_POST['password'];
-    $kund = login($kund_id, $password);
+    $user = getUser($username, $password);
+    if ($user) {
+        $_SESSION['username'] = $user['username'];
+        $_SESSION['password'] = $password;
+        header('Location: index.php');
+        exit();
+    } else {
+        echo "Invalid username or password, login failed";
+    }
 }
+
 
 ?>
 <!DOCTYPE html>
@@ -23,8 +32,8 @@ if (isset($_POST['submit'])) {
 
 <body>
     <form method="post" action="">
-        <label for="kund_id">Admin ID:</label>
-        <input type="text" id="kund_id" name="kund_id" required>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
         <br>
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" required>

@@ -1,4 +1,6 @@
 <?php
+require_once 'Assets/sessioncheck.php';
+require_once 'Assets/functions.php';
 require_once 'Assets/config/db.php';
 ?>
 <!DOCTYPE html>
@@ -13,6 +15,7 @@ require_once 'Assets/config/db.php';
 <body>
     <h1>Kläduthyrning</h1>
     <p><a href="logout.php">Logga ut</a></p>
+
 
 
 </body>
