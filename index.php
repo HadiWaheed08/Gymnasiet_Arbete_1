@@ -13,6 +13,14 @@ require_once 'Assets/config/db.php';
 </head>
 
 <body>
+    <nav>
+        <ul>
+            <li><a href="uthyrda.php">Uthyrda-kläder</a></li>
+            <li><a href="kläder.php">Kläder</a></li>
+            <li><a href="inlämnade.php">Inlämnade-kläder</a></li>
+            <li><a href="logout.php">Logga ut</a></li>
+        </ul>
+    </nav>
     <h1>Kläduthyrning</h1>
     <p><a href="logout.php">Logga ut</a></p>
 
