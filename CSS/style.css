@@ -2,7 +2,9 @@ body{
     background-color: #F5C8B0;
     color: black;
 }
-
+header {
+    position: relative;
+}
 nav ul {
     display: flex;
     gap: 15px;
@@ -51,6 +53,7 @@ nav ul li a:hover {
     text-underline-offset: 5px;
     transform: translateY(-4px);
 }
+
 .login-body{
     font-family: Arial, sans-serif;
     display: flex;
@@ -114,8 +117,15 @@ nav ul li a:hover {
     background-color: #EFB99F;
     transform: translateY(-2px);
 }
-header {
-    position: relative;
+.error-message {
+    background-color: #ffe0e0;
+    color: #cc0000;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 15px;
+    border: 1px solid #cc0000;
 }
 
 .logout {

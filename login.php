@@ -15,7 +15,7 @@ if (isset($_POST['submit'])) {
         header('Location: index.php');
         exit();
     } else {
-        echo "Invalid username or password, login failed";
+        $error = "Fel användarnamn eller lösenord, inloggning misslyckades.";
     }
 }
 
@@ -36,16 +36,20 @@ if (isset($_POST['submit'])) {
         <h1>Kläduthyrning-backend</h1>
         <h2>Login</h2>
 
+        <?php if (!empty($error)): ?>
+            <p class="error-message">
+                <?php echo htmlspecialchars($error); ?>
+            </p>
+        <?php endif; ?>
         <form method="post" action="">
 
-            <label for="username">Username:</label>
+            <label for="username">Användarnamn:</label>
             <input type="text" id="username" name="username" placeholder="Enter username" required>
 
-            <label for="password">Password:</label>
+            <label for="password">Lösenord:</label>
             <input type="password" id="password" name="password" placeholder="Enter password" required>
 
             <input type="submit" name="submit" value="Login">
-
         </form>
     </div>
 </body>
