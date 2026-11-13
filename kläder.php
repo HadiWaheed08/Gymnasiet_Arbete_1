@@ -9,15 +9,21 @@
 </head>
 
 <body>
-    <nav>
-        <ul>
-            <li><a href="index.php">Hem</a></li>
-            <li><a href="uthyrda.php">Uthyrda-kläder</a></li>
-            <li><a href="inlämnade.php">Inlämnade-kläder</a></li>
-            <li><a href="logout.php">Logga ut</a></li>
-        </ul>
-    </nav>
-    <h1>Kläder</h1>
+    <header>
+        <div>
+            <nav>
+                <ul>
+                    <li><a href="index.php">Hem</a></li>
+                    <li><a href="uthyrda.php">Uthyrda-kläder</a></li>
+                    <li><a href="inlämnade.php">Inlämnade-kläder</a></li>
+                    <li><a href="kund.php">Alla-kunder</a></li>
+                    <li><a href="logout.php" class="logout" onclick="return confirm('Är du säker på att du vill logga ut?')">Logga ut</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <h1>Kläder</h1>
+    </header>
 </body>
 
 </html>

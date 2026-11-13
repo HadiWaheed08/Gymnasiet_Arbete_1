@@ -114,4 +114,23 @@ nav ul li a:hover {
     background-color: #EFB99F;
     transform: translateY(-2px);
 }
+header {
+    position: relative;
+}
+
+.logout {
+    position: absolute;
+    right: 0;
+    background-color: #F5C8B0;
+    color: black;
+    padding: 10px 18px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.logout:hover {
+    background-color: #EFB99F;
+}
 

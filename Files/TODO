@@ -1,5 +1,8 @@
-Nov 13 2026
+Nov 13 2026 
 Har fixat style css och samt nästan alla sidor jag kommer behöva inför backend gymnasiet arbete.
 Jag har fixat en navigation bar samt fixat den så att den ligger där uppe bredvid varann och inte under varann.
 Jag fixade css för min nav bar och fixat hover och andra små design. 
 Fixat min login so att den ligger inom box och samt fixat design och hover och alla dessa små design detaljer.
+Har fixat logout button så att den frågar innan jag loggar ut och samt fixat ett absolut plats åt den längst åt 
+höger så att man inte råkar trycka på den när man försöker navigera sig runt hemsidan samt att även om man råkar
+trycka så får du en varning som andra hemsidor.
