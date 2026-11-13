@@ -1,0 +1,117 @@
+body{
+    background-color: #F5C8B0;
+    color: black;
+}
+
+nav ul {
+    display: flex;
+    gap: 15px;
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li a {
+    display: block;
+    padding: 12px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: black;
+    background-color: #F5C8B0;
+    transition: 0.2s ease;
+}
+
+nav{
+    background-color: #F5C8B0;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    gap: 50px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+nav a{
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+}
+ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+li{
+    display: inline;
+    margin-right: 40px;
+}
+nav ul li a:hover {
+    background-color: #EFB99F;
+    color: black;
+    text-decoration: underline;
+    text-underline-offset: 5px;
+    transform: translateY(-4px);
+}
+.login-body{
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+.login-container {
+    background-color: white;
+    padding: 40px;
+    width: fit-content;
+    min-width: 300px;
+    max-width: 90%;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    text-align: center;
+}
+
+.login-container h1 {
+    color: black;
+    margin-bottom: 5px;
+}
+
+.login-container h2 {
+    margin-bottom: 25px;
+}
+
+.login-container form {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.login-container label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.login-container input[type="text"],
+.login-container input[type="password"] {
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+}
+
+.login-container input[type="submit"] {
+    background-color: #F5C8B0;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.login-container input[type="submit"]:hover {
+    background-color: #EFB99F;
+    transform: translateY(-2px);
+}
+

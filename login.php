@@ -27,19 +27,27 @@ if (isset($_POST['submit'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="CSS/style.css">
     <title>Login</title>
 </head>
 
-<body>
-    <form method="post" action="">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required>
-        <br>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-        <br>
-        <input type="submit" name="submit" value="Login">
-    </form>
+<body class="login-body">
+    <div class="login-container">
+        <h1>Kläduthyrning-backend</h1>
+        <h2>Login</h2>
+
+        <form method="post" action="">
+
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" placeholder="Enter username" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Enter password" required>
+
+            <input type="submit" name="submit" value="Login">
+
+        </form>
+    </div>
 </body>
 
 </html>
