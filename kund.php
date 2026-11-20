@@ -13,6 +13,7 @@
         <div>
             <nav>
                 <ul>
+                    <a href="index.php"><img src="../Gymnasiet_Arbete/Bilder/Logo.png" alt="Logo" class="logo"></a>
                     <li><a href="index.php">Hem</a></li>
                     <li><a href="kläder.php">Kläder</a></li>
                     <li><a href="uthyrda.php">Uthyrda-kläder</a></li>
@@ -21,8 +22,12 @@
                 </ul>
             </nav>
         </div>
+        <br>
         <h1>Alla-kunder</h1>
     </header>
 </body>
+<footer>
+    <p>&copy; 2026 Kläduthyrning. Alla rättigheter förbehållna.</p>
+</footer>
 
 </html>

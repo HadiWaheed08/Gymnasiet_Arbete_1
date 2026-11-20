@@ -8,3 +8,11 @@ höger så att man inte råkar trycka på den när man försöker navigera sig r
 trycka så får du en varning som andra hemsidor.
 Fixat login så att ifall det fel användarnamn eller lösenord så skriver den upp i boxen det och att den är röd
 och andra små detalje/design.
+
+
+Nov 20 2026
+Jag har fixat min navigation bar och lite annat desing samt har en logo nu och vet vad jag ska göra. 
+Jag ska göra några dummy kunder och annat så att jag kan fixa min backend och kolla om den tar kunder och all annat 
+från databasen och funkar. Jag ska inte fixa alla kläder eller kunder jag ska bara skapa några styckna var och endast fixa koden 
+och kolla om den tar från databasen och funkar och efter server är igång och jag får alla kunder och kläder från Ilan ska jag 
+börja fixa till lite och kolla om det funkar. 
