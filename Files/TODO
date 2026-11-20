@@ -11,8 +11,12 @@ och andra små detalje/design.
 
 
 Nov 20 2026
-Jag har fixat min navigation bar och lite annat desing samt har en logo nu och vet vad jag ska göra. 
-Jag ska göra några dummy kunder och annat så att jag kan fixa min backend och kolla om den tar kunder och all annat 
-från databasen och funkar. Jag ska inte fixa alla kläder eller kunder jag ska bara skapa några styckna var och endast fixa koden 
-och kolla om den tar från databasen och funkar och efter server är igång och jag får alla kunder och kläder från Ilan ska jag 
-börja fixa till lite och kolla om det funkar. 
+Har fortsatt med designen och fått in vår logga i navigation baren så att hela sidhuvudet ser komplett ut.
+Nu har jag även en tydlig plan för hur jag ska gå vidare med backend-delen.
+Jag har byggt klart strukturen och PHP-koden för alla undersidor 
+(index.php, kläder.php, uthyrda.php, inlämnade.php och kund.php) 
+med rollbaserad behörighetsstyrning och koppling till functions.php och databasen ($hyrning). 
+Istället för att lägga in hela sortimentet och alla kunder själv kommer jag bara 
+att skapa några få dummy-kunder och testplagg i databasen för att verifiera att hämtningen 
+fungerar som den ska. När servern är igång och jag får den riktiga datan från Ilan kommer jag 
+att koppla in den och testa att allt visas korrekt på alla sidor.

@@ -6,7 +6,7 @@ $password_hyrning = "hyrning";
 
 
 try {
-    $hyrning = new PDO("mysql:host=$hostname_hyrning;dbname=$database_hyrning", $username_hyrning, $password_hyrning);
+    $hyrning = new PDO("mysql:host=$hostname_hyrning;dbname=$database_hyrning;charset=utf8mb4", $username_hyrning, $password_hyrning);
     // set the PDO error mode to exception
     $hyrning->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     //echo "Connected successfully"; // denna rad kan tas bort om allt fungerar

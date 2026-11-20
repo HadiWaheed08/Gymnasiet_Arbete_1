@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Värd: localhost:3306
--- Tid vid skapande: 21 okt 2026 kl 08:57
--- Serverversion: 8.4.11-0ubuntu0.26.04.1
+-- Tid vid skapande: 20 nov 2026 kl 14:33
+-- Serverversion: 8.4.13-0ubuntu0.26.04.2
 -- PHP-version: 8.5.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -65,6 +65,29 @@ CREATE TABLE `plagg` (
 -- --------------------------------------------------------
 
 --
+-- Tabellstruktur `user`
+--
+
+CREATE TABLE `user` (
+  `username` varchar(255) NOT NULL,
+  `password` text NOT NULL,
+  `grupp` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumpning av Data i tabell `user`
+--
+
+INSERT INTO `user` (`username`, `password`, `grupp`) VALUES
+('admin', 'admin', 'admin'),
+('inlämnad1', 'inlämnad1', 'inlämnad'),
+('kund1', 'kund1', 'kundmot'),
+('lager1', 'lager1', 'lager'),
+('uthyrda1', 'uthyrda1', 'uthyrning');
+
+-- --------------------------------------------------------
+
+--
 -- Tabellstruktur `Uthyrning`
 --
 
@@ -112,6 +135,12 @@ ALTER TABLE `plagg`
   ADD KEY `fk_plagg_1_idx` (`kategoriPlaggID`);
 
 --
+-- Index för tabell `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`username`);
+
+--
 -- Index för tabell `Uthyrning`
 --
 ALTER TABLE `Uthyrning`
@@ -139,7 +168,7 @@ ALTER TABLE `Kategori`
 -- AUTO_INCREMENT för tabell `kund`
 --
 ALTER TABLE `kund`
-  MODIFY `kundID` int NOT NULL AUTO_INCREMENT;
+  MODIFY `kundID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT för tabell `plagg`

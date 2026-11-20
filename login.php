@@ -1,28 +1,26 @@
 <?php
-require_once 'Assets/functions.php';
-//Initierar sessionshantering
 session_start();
-//Kontrollerar om logga in-knappen har tryckts
+require_once 'Assets/functions.php';
+
+// Kontrollerar om logga in-knappen har tryckts
 if (isset($_POST['submit'])) {
-    //Deklarerar en vektor för att spara felmeddelanden
-    //Kontrollerar om fälten användarnamn och lösenord är toma
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+    $username = trim($_POST['username'] ?? '');
+    $password = $_POST['password'] ?? '';
+
     $user = getUser($username, $password);
+
     if ($user) {
         $_SESSION['username'] = $user['username'];
-        $_SESSION['password'] = $password;
+        $_SESSION['grupp'] = $user['grupp'];
         header('Location: index.php');
         exit();
     } else {
         $error = "Fel användarnamn eller lösenord, inloggning misslyckades.";
     }
 }
-
-
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sv">
 
 <head>
     <meta charset="UTF-8">
