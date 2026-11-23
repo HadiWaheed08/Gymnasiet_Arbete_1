@@ -49,7 +49,7 @@ $grupp = $_SESSION['grupp'] ?? '';
         <h1>Kläduthyrning</h1>
     </header>
     <main>
-        <h2>Översikt & Hantering (Inloggad som: <?= htmlspecialchars($_SESSION['username']) ?>)</h2>
+        <h2>Översikt & Hantering</h2>
         <div class="grid">
             <?php if ($grupp === 'admin' || $grupp === 'lager'): ?>
                 <section class="card">
