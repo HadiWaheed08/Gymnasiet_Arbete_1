@@ -107,10 +107,6 @@ main h2 {
     grid-template-columns: repeat(2, 1fr);
     gap: 25px;
 }
-.grid:has(> :only-child) {
-    grid-template-columns: minmax(280px, 450px);
-    justify-content: center;
-}
 
 .card {
     background-color: white;
@@ -295,11 +291,9 @@ footer {
 }
 
 @media (max-width: 650px) {
-    .grid,
-    .grid:has(> :only-child) {
+.grid {
         grid-template-columns: 1fr;
     }
-
     .login-container {
         min-width: unset;
         width: 90%;
