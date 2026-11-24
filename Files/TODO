@@ -20,3 +20,12 @@ Istället för att lägga in hela sortimentet och alla kunder själv kommer jag 
 att skapa några få dummy-kunder och testplagg i databasen för att verifiera att hämtningen 
 fungerar som den ska. När servern är igång och jag får den riktiga datan från Ilan kommer jag 
 att koppla in den och testa att allt visas korrekt på alla sidor.
+
+Nov 24
+Har slutfört kopplingen mellan databasen och gränssnittet samt finslipat den rollbaserade 
+inloggningen och behörighetsstyrningen för samtliga användargrupper (admin, lager, uthyrning, inlämnad och kundmot).
+Har även uppdaterat databasanslutningen (db.php) med utf8mb4-kodning så att svenska tecken (å, ä, ö) hanteras korrekt,
+samt städat upp sessionshanteringen för ökad säkerhet.
+Vidare har jag mobilanpassat hela webbplatsen och inloggningssidan med responsiv CSS 
+och rensat bort överflödig text på startsidan (index.php). Nu är hela grundsystemet färdigt 
+och redo för att fyllas med testdata i databasen.
