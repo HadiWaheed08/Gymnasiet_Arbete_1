@@ -50,7 +50,7 @@ $grupp = $_SESSION['grupp'] ?? '';
     </header>
     <main>
         <h2>Översikt & Hantering</h2>
-        <div class="grid <?= ($grupp !== 'admin') ? 'single-card' : '' ?>">
+        <div class="grid">
             <?php if ($grupp === 'admin' || $grupp === 'lager'): ?>
                 <section class="card">
                     <h3>Lediga kläder (<?= $antalLediga ?>)</h3>
