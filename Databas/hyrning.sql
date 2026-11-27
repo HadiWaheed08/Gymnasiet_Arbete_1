@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Värd: localhost:3306
--- Tid vid skapande: 20 nov 2026 kl 14:33
+-- Tid vid skapande: 27 nov 2026 kl 12:55
 -- Serverversion: 8.4.13-0ubuntu0.26.04.2
 -- PHP-version: 8.5.4
 
@@ -83,7 +83,7 @@ INSERT INTO `user` (`username`, `password`, `grupp`) VALUES
 ('inlämnad1', 'inlämnad1', 'inlämnad'),
 ('kund1', 'kund1', 'kundmot'),
 ('lager1', 'lager1', 'lager'),
-('uthyrda1', 'uthyrda1', 'uthyrning');
+('uthyrda1', 'uthyrda1', 'uthyrda');
 
 -- --------------------------------------------------------
 
@@ -168,7 +168,7 @@ ALTER TABLE `Kategori`
 -- AUTO_INCREMENT för tabell `kund`
 --
 ALTER TABLE `kund`
-  MODIFY `kundID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `kundID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT för tabell `plagg`
