@@ -59,6 +59,11 @@ $kunder = getAllKunder();
         <?php else: ?>
             <div class="grid">
                 <?php foreach ($kunder as $kund): ?>
+                    <?php
+                    $uthyrningar = getKundUthyrningar($kund['kundID']);
+                    $aktiva = array_filter($uthyrningar, fn($u) => $u['statusPlagg'] === 'Uthyrd');
+                    $tidigare = array_filter($uthyrningar, fn($u) => $u['statusPlagg'] !== 'Uthyrd');
+                    ?>
                     <section class="card">
                         <div>
                             <h3><?= htmlspecialchars($kund['name'] ?? 'Namnlös kund') ?></h3>
@@ -67,6 +72,38 @@ $kunder = getAllKunder();
                                 <strong>E-post:</strong> <?= htmlspecialchars($kund['email'] ?? '-') ?><br>
                                 <strong>Adress:</strong> <?= htmlspecialchars($kund['adress'] ?? '-') ?>
                             </p>
+
+                            <hr class="card-divider">
+
+                            <p class="section-label"><strong>Hyr just nu (<?= count($aktiva) ?>):</strong></p>
+                            <?php if (empty($aktiva)): ?>
+                                <p class="muted-text">Inga aktiva uthyrningar.</p>
+                            <?php else: ?>
+                                <ul class="rental-list">
+                                    <?php foreach ($aktiva as $a): ?>
+                                        <?php $forsenad = ((int)($a['dagarForsenad'] ?? 0) > 0); ?>
+                                        <li class="<?= $forsenad ? 'rental-overdue' : '' ?>">
+                                            <?= htmlspecialchars($a['namnPlagg']) ?> (<?= htmlspecialchars($a['storlek'] ?? '-') ?>)
+                                            - retur <?= htmlspecialchars($a['slutdatum'] ?? '-') ?>
+                                            <?= $forsenad ? '(FÖRSENAD!)' : '' ?>
+                                        </li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            <?php endif; ?>
+
+                            <p class="section-label"><strong>Tidigare hyrda plagg (<?= count($tidigare) ?>):</strong></p>
+                            <?php if (empty($tidigare)): ?>
+                                <p class="muted-text">Ingen historik ännu.</p>
+                            <?php else: ?>
+                                <ul class="rental-list rental-list-history">
+                                    <?php foreach ($tidigare as $t): ?>
+                                        <li>
+                                            <?= htmlspecialchars($t['namnPlagg']) ?> (<?= htmlspecialchars($t['storlek'] ?? '-') ?>)
+                                            - hyrdes <?= htmlspecialchars($t['startdatum'] ?? '-') ?>
+                                        </li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            <?php endif; ?>
                         </div>
                     </section>
                 <?php endforeach; ?>

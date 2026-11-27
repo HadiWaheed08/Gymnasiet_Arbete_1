@@ -9,6 +9,19 @@ if ($grupp !== 'admin' && $grupp !== 'inlämnad') {
     exit();
 }
 
+$meddelande = '';
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $plaggID = (int)($_POST['plaggID'] ?? 0);
+
+    if (isset($_POST['godkann_plagg']) && $plaggID) {
+        updatePlaggStatus($plaggID, 'Ledig');
+        $meddelande = "Plagget är godkänt och ligger nu ute som ledigt i lagret igen!";
+    } elseif (isset($_POST['kassera_plagg']) && $plaggID) {
+        updatePlaggStatus($plaggID, 'Trasig');
+        $meddelande = "Plagget har markerats som trasigt/kasserat och tas bort från uthyrning.";
+    }
+}
+
 $inlamnadePlagg = getPlaggByStatus('Inlämnad');
 ?>
 <!DOCTYPE html>
@@ -50,6 +63,12 @@ $inlamnadePlagg = getPlaggByStatus('Inlämnad');
     </header>
 
     <main>
+        <?php if ($meddelande): ?>
+            <section class="card success-message">
+                <p><?= htmlspecialchars($meddelande) ?></p>
+            </section>
+        <?php endif; ?>
+
         <h2>Plagg för granskning & tvätt (<?= count($inlamnadePlagg) ?>)</h2>
 
         <?php if (empty($inlamnadePlagg)): ?>
@@ -68,6 +87,21 @@ $inlamnadePlagg = getPlaggByStatus('Inlämnad');
                                 <strong>Status:</strong> <?= htmlspecialchars($plagg['statusPlagg'] ?? 'Inlämnad') ?><br>
                                 <strong>Beskrivning:</strong> <?= htmlspecialchars($plagg['beskrivning'] ?? '-') ?>
                             </p>
+                        </div>
+
+                        <div class="card-actions">
+                            <form method="POST">
+                                <input type="hidden" name="plaggID" value="<?= $plagg['plaggID'] ?>">
+                                <button type="submit" name="godkann_plagg" class="btn">
+                                    Godkänn tvätt/skick &rarr; Gör ledig
+                                </button>
+                            </form>
+                            <form method="POST" onsubmit="return confirm('Är du säker på att plagget är trasigt och ska tas ur bruk?');">
+                                <input type="hidden" name="plaggID" value="<?= $plagg['plaggID'] ?>">
+                                <button type="submit" name="kassera_plagg" class="btn btn-danger">
+                                    Markera som trasig
+                                </button>
+                            </form>
                         </div>
                     </section>
                 <?php endforeach; ?>

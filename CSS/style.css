@@ -106,6 +106,7 @@ main h2 {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 25px;
+    margin-bottom: 35px;
 }
 
 .card {
@@ -151,11 +152,69 @@ main h2 {
     border-radius: 6px;
     font-weight: bold;
     transition: background-color 0.2s ease;
+    width: 100%;
+    box-sizing: border-box;
+    border: none;
+    font-size: 15px;
+    cursor: pointer;
 }
 
 .card .btn:hover {
     background-color: #EFB99F;
 }
+.card-warning {
+    border: 2px solid #cc0000;
+    background-color: #fff5f5;
+}
+
+.card-form {
+    margin-bottom: 35px;
+}
+.card-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.card .btn-secondary {
+    background-color: #eee;
+}
+
+.card .btn-secondary:hover {
+    background-color: #ddd;
+}
+
+.card .btn-danger {
+    background-color: #ffcccc;
+}
+
+.card .btn-danger:hover {
+    background-color: #ffaaaa;
+}
+
+.card-form-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.card-divider {
+    border: 0;
+    border-top: 1px solid #eee;
+    margin: 12px 0;
+}
+
+.card .section-label {
+    margin-bottom: 6px;
+    color: black;
+}
+
+.card .muted-text {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 12px;
+}
+
 
 .login-body {
     font-family: Arial, sans-serif;
@@ -241,6 +300,86 @@ footer {
     font-size: 0.9rem;
 }
 
+.success-message {
+    background-color: #e6ffed;
+    border: 1px solid #28a745;
+    margin-bottom: 25px;
+}
+
+.success-message p {
+    color: #155724;
+    font-weight: bold;
+    margin: 0;
+    text-align: center;
+}
+
+.status-danger {
+    color: #cc0000;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.text-danger {
+    color: #cc0000;
+}
+
+.booking-form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    border-top: 1px solid #eee;
+    padding-top: 12px;
+}
+
+.form-input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+    font-family: inherit;
+}
+
+.form-input-sm {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    font-family: inherit;
+}
+
+.date-row {
+    display: flex;
+    gap: 8px;
+}
+
+.date-row .form-input-sm {
+    flex: 1;
+}
+
+.rental-list {
+    padding-left: 18px;
+    margin: 0 0 12px 0;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.rental-list:last-child {
+    margin-bottom: 0;
+}
+
+.rental-list-history {
+    color: #555;
+}
+
+.rental-overdue {
+    color: #cc0000;
+    font-weight: bold;
+}
+
 @media (max-width: 900px) {
     header nav {
         flex-direction: column;
@@ -299,5 +438,8 @@ footer {
         width: 90%;
         padding: 25px 20px;
         box-sizing: border-box;
+    }
+    .date-row {
+        flex-direction: column;
     }
 }
