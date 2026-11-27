@@ -54,7 +54,7 @@ $kunder = getAllKunder();
 
         <?php if (empty($kunder)): ?>
             <section class="card">
-                <p>Det finns inga registrerade kunder i databasen just nu.</p>
+                <p>Det finns inga registrerade kunder just nu.</p>
             </section>
         <?php else: ?>
             <div class="grid">

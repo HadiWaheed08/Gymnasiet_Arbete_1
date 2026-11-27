@@ -54,7 +54,7 @@ $inlamnadePlagg = getPlaggByStatus('Inlämnad');
 
         <?php if (empty($inlamnadePlagg)): ?>
             <section class="card">
-                <p>Det finns inga inlämnade kläder i databasen just nu.</p>
+                <p>Det finns inga inlämnade kläder just nu.</p>
             </section>
         <?php else: ?>
             <div class="grid">

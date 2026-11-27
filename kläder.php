@@ -54,7 +54,7 @@ $ledigaPlagg = getPlaggByStatus('Ledig');
 
         <?php if (empty($ledigaPlagg)): ?>
             <section class="card">
-                <p>Det finns inga lediga kläder i databasen just nu.</p>
+                <p>Det finns inga lediga kläder just nu.</p>
             </section>
         <?php else: ?>
             <div class="grid">

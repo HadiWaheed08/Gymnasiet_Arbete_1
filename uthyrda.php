@@ -54,7 +54,7 @@ $uthyrdaPlagg = getUthyrdaPlagg();
 
         <?php if (empty($uthyrdaPlagg)): ?>
             <section class="card">
-                <p>Det finns inga uthyrda kläder i databasen just nu.</p>
+                <p>Det finns inga uthyrda kläder just nu.</p>
             </section>
         <?php else: ?>
             <div class="grid">
