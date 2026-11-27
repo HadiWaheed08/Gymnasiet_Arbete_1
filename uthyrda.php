@@ -4,7 +4,7 @@ require_once 'Assets/config/db.php';
 require_once 'Assets/functions.php';
 
 $grupp = $_SESSION['grupp'] ?? '';
-if ($grupp !== 'admin' && $grupp !== 'uthyrning' && $grupp !== 'kundmot' && $grupp !== 'lager') {
+if ($grupp !== 'admin' && $grupp !== 'uthyrda' && $grupp !== 'kundmot' && $grupp !== 'lager') {
     header('Location: index.php');
     exit();
 }

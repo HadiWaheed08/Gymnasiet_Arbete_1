@@ -30,7 +30,7 @@ $grupp = $_SESSION['grupp'] ?? '';
                         <li><a href="kläder.php">Kläder</a></li>
                     <?php endif; ?>
 
-                    <?php if ($grupp === 'admin' || $grupp === 'uthyrning' || $grupp === 'kundmot' || $grupp === 'lager'): ?>
+                    <?php if ($grupp === 'admin' || $grupp === 'uthyrda' || $grupp === 'kundmot' || $grupp === 'lager'): ?>
                         <li><a href="uthyrda.php">Uthyrda-kläder</a></li>
                     <?php endif; ?>
 
@@ -59,7 +59,7 @@ $grupp = $_SESSION['grupp'] ?? '';
                 </section>
             <?php endif; ?>
 
-            <?php if ($grupp === 'admin' || $grupp === 'uthyrning' || $grupp === 'kundmot' || $grupp === 'lager'): ?>
+            <?php if ($grupp === 'admin' || $grupp === 'uthyrda' || $grupp === 'kundmot' || $grupp === 'lager'): ?>
                 <section class="card">
                     <h3>Uthyrda kläder (<?= $antalUthyrda ?>)</h3>
                     <p>Se aktiva uthyrningar och kontrollera om plagg är rena och fina eller om något har gått sönder.</p>

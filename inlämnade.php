@@ -33,7 +33,7 @@ $inlamnadePlagg = getPlaggByStatus('Inlämnad');
                         <li><a href="kläder.php">Kläder</a></li>
                     <?php endif; ?>
 
-                    <?php if ($grupp === 'admin' || $grupp === 'uthyrning' || $grupp === 'kundmot' || $grupp === 'lager'): ?>
+                    <?php if ($grupp === 'admin' || $grupp === 'uthyrda' || $grupp === 'kundmot' || $grupp === 'lager'): ?>
                         <li><a href="uthyrda.php">Uthyrda-kläder</a></li>
                     <?php endif; ?>
 
