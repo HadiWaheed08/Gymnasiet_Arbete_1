@@ -86,7 +86,7 @@ function getLagerStatusPerModell()
                 k.namnKategori,
                 SUM(CASE WHEN p.statusPlagg = 'Ledig' THEN 1 ELSE 0 END) AS antalLediga,
                 SUM(CASE WHEN p.statusPlagg = 'Uthyrd' THEN 1 ELSE 0 END) AS antalUthyrda,
-                SUM(CASE WHEN p.statusPlagg = 'Inlämnad' THEN 1 ELSE 0 END) AS antalInlamnade,
+                SUM(CASE WHEN p.statusPlagg IN ('Inlämnad', 'Tvätt') = 'Inlämnad', 'Tvätt' THEN 1 ELSE 0 END) AS antalInlamnade,
                 (
                     SELECT MIN(u.slutdatum)
                     FROM plagg p2

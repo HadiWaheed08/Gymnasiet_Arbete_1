@@ -10,19 +10,26 @@ if ($grupp !== 'admin' && $grupp !== 'inlämnad') {
 }
 
 $meddelande = '';
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['andra_status'])) {
     $plaggID = (int)($_POST['plaggID'] ?? 0);
+    $nyStatus = $_POST['nyStatus'] ?? '';
+    $tillatna = ['Ledig', 'Tvätt', 'Trasig', 'Borttagen'];
 
-    if (isset($_POST['godkann_plagg']) && $plaggID) {
-        updatePlaggStatus($plaggID, 'Ledig');
-        $meddelande = "Plagget är godkänt och ligger nu ute som ledigt i lagret igen!";
-    } elseif (isset($_POST['kassera_plagg']) && $plaggID) {
-        updatePlaggStatus($plaggID, 'Trasig');
-        $meddelande = "Plagget har markerats som trasigt/kasserat och tas bort från uthyrning.";
+    if ($plaggID && in_array($nyStatus, $tillatna, true) && updatePlaggStatus($plaggID, $nyStatus)) {
+        if ($nyStatus === 'Ledig') {
+            $meddelande = "Plagget är godkänt och ligger nu ute som ledigt i lagret igen!";
+        } elseif ($nyStatus === 'Tvätt') {
+            $meddelande = "Plagget har skickats till tvätt!";
+        } elseif ($nyStatus === 'Trasig') {
+            $meddelande = "Plagget har markerats som trasigt och tagits ur bruk.";
+        } elseif ($nyStatus === 'Borttagen') {
+            $meddelande = "Plagget har tagits bort från systemet.";
+        }
     }
 }
 
 $inlamnadePlagg = getPlaggByStatus('Inlämnad');
+$tvattPlagg = getPlaggByStatus('Tvätt');
 ?>
 <!DOCTYPE html>
 <html lang="sv">
@@ -59,7 +66,7 @@ $inlamnadePlagg = getPlaggByStatus('Inlämnad');
             </nav>
         </div>
         <br>
-        <h1>Inlämnade kläder</h1>
+        <h1>Inlämnade kläder & Tvätt</h1>
     </header>
 
     <main>
@@ -69,11 +76,11 @@ $inlamnadePlagg = getPlaggByStatus('Inlämnad');
             </section>
         <?php endif; ?>
 
-        <h2>Plagg för granskning & tvätt (<?= count($inlamnadePlagg) ?>)</h2>
-
+        <!-- 1. NYSS INLÄMNADE PLAGG -->
+        <h2>Nyss inlämnade plagg för granskning (<?= count($inlamnadePlagg) ?>)</h2>
         <?php if (empty($inlamnadePlagg)): ?>
-            <section class="card">
-                <p>Det finns inga inlämnade kläder just nu.</p>
+            <section class="card card-form">
+                <p>Det finns inga nyss inlämnade kläder att granska.</p>
             </section>
         <?php else: ?>
             <div class="grid">
@@ -89,20 +96,58 @@ $inlamnadePlagg = getPlaggByStatus('Inlämnad');
                             </p>
                         </div>
 
-                        <div class="card-actions">
-                            <form method="POST">
-                                <input type="hidden" name="plaggID" value="<?= $plagg['plaggID'] ?>">
-                                <button type="submit" name="godkann_plagg" class="btn">
-                                    Godkänn tvätt/skick &rarr; Gör ledig
-                                </button>
-                            </form>
-                            <form method="POST" onsubmit="return confirm('Är du säker på att plagget är trasigt och ska tas ur bruk?');">
-                                <input type="hidden" name="plaggID" value="<?= $plagg['plaggID'] ?>">
-                                <button type="submit" name="kassera_plagg" class="btn btn-danger">
-                                    Markera som trasig
-                                </button>
-                            </form>
+                        <form method="POST" class="card-actions">
+                            <input type="hidden" name="plaggID" value="<?= $plagg['plaggID'] ?>">
+                            <input type="hidden" name="nyStatus" value="">
+
+                            <button type="submit" name="andra_status" value="1" onclick="this.form.nyStatus.value='Ledig'" class="btn">
+                                Godkänn direkt &rarr; Gör ledig
+                            </button>
+                            <button type="submit" name="andra_status" value="1" onclick="this.form.nyStatus.value='Tvätt'" class="btn btn-secondary">
+                                Måste tvättas
+                            </button>
+                            <button type="submit" name="andra_status" value="1" onclick="this.form.nyStatus.value='Trasig'" class="btn btn-danger">
+                                Markera som trasig
+                            </button>
+                            <button type="submit" name="andra_status" value="1" onclick="if(!confirm('Ta bort plagget helt från lagret?')) return false; this.form.nyStatus.value='Borttagen';" class="btn btn-danger">
+                                Ta bort plagg
+                            </button>
+                        </form>
+                    </section>
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
+
+        <!-- 2. PLAGG SOM LIGGER PÅ TVÄTT -->
+        <h2>Plagg på tvätt (<?= count($tvattPlagg) ?>)</h2>
+        <?php if (empty($tvattPlagg)): ?>
+            <section class="card">
+                <p>Inga plagg ligger på tvätt just nu.</p>
+            </section>
+        <?php else: ?>
+            <div class="grid">
+                <?php foreach ($tvattPlagg as $plagg): ?>
+                    <section class="card">
+                        <div>
+                            <h3><?= htmlspecialchars($plagg['namnPlagg']) ?> (<?= htmlspecialchars($plagg['storlek'] ?? '-') ?>)</h3>
+                            <p>
+                                <strong>Kategori:</strong> <?= htmlspecialchars($plagg['namnKategori'] ?? 'Ingen') ?><br>
+                                <strong>Status:</strong> På tvätt<br>
+                                <strong>Beskrivning:</strong> <?= htmlspecialchars($plagg['beskrivning'] ?? '-') ?>
+                            </p>
                         </div>
+
+                        <form method="POST" class="card-actions">
+                            <input type="hidden" name="plaggID" value="<?= $plagg['plaggID'] ?>">
+                            <input type="hidden" name="nyStatus" value="">
+
+                            <button type="submit" name="andra_status" value="1" onclick="this.form.nyStatus.value='Ledig'" class="btn">
+                                Tvätt klar &rarr; Gör ledig i lager
+                            </button>
+                            <button type="submit" name="andra_status" value="1" onclick="this.form.nyStatus.value='Trasig'" class="btn btn-danger">
+                                Markera som trasig
+                            </button>
+                        </form>
                     </section>
                 <?php endforeach; ?>
             </div>

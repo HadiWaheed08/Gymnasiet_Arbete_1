@@ -32,6 +32,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($plaggID && $kundID && skapaUthyrning($plaggID, $kundID, $startdatum, $slutdatum)) {
             $meddelande = "Uthyrningen är bokad och plagget är nu markerat som uthyrt!";
         }
+    } elseif (isset($_POST['andra_status'])) {
+        $plaggID = (int)($_POST['plaggID'] ?? 0);
+        $nyStatus = $_POST['nyStatus'] ?? '';
+        $tillatna = ['Tvätt', 'Trasig', 'Borttagen'];
+
+        if ($plaggID && in_array($nyStatus, $tillatna, true) && updatePlaggStatus($plaggID, $nyStatus)) {
+            if ($nyStatus === 'Tvätt') {
+                $meddelande = "Plagget har skickats till tvätt/granskning!";
+            } elseif ($nyStatus === 'Trasig') {
+                $meddelande = "Plagget har markerats som trasigt!";
+            } elseif ($nyStatus === 'Borttagen') {
+                $meddelande = "Plagget har tagits bort från lagret!";
+            }
+        }
     }
 }
 
@@ -109,7 +123,7 @@ $kunder = getAllKunder();
                                 <strong>På tvätt/granskning:</strong> <?= (int)$modell['antalInlamnade'] ?> st
                                 <?php if ($arSlut): ?>
                                     <br><strong class="text-danger">Nästa förväntas tillbaka:</strong>
-                                    <?= $modell['nastaReturDatum'] ? htmlspecialchars($modell['nastaReturDatum']) : 'Inget returdatum (ligger på tvätt)' ?>
+                                    <?= $modell['nastaReturDatum'] ? htmlspecialchars($modell['nastaReturDatum']) : 'Inget returdatum (ligger på tvätt/lagning)' ?>
                                 <?php endif; ?>
                             </p>
                         </div>
@@ -153,22 +167,38 @@ $kunder = getAllKunder();
                             </p>
                         </div>
 
-                        <?php if (!empty($kunder)): ?>
-                            <form method="POST" class="booking-form">
+                        <div class="card-actions">
+                            <?php if (!empty($kunder)): ?>
+                                <form method="POST" class="booking-form">
+                                    <input type="hidden" name="plaggID" value="<?= $plagg['plaggID'] ?>">
+                                    <select name="kundID" class="form-input-sm" required>
+                                        <option value="">Välj kund att hyra ut till...</option>
+                                        <?php foreach ($kunder as $k): ?>
+                                            <option value="<?= $k['kundID'] ?>"><?= htmlspecialchars($k['name']) ?> (#<?= $k['kundID'] ?>)</option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                    <div class="date-row">
+                                        <input type="date" name="startdatum" class="form-input-sm" value="<?= date('Y-m-d') ?>" required>
+                                        <input type="date" name="slutdatum" class="form-input-sm" value="<?= date('Y-m-d', strtotime('+3 days')) ?>" required>
+                                    </div>
+                                    <button type="submit" name="boka_uthyrning" class="btn">Hyr ut plagg</button>
+                                </form>
+                            <?php endif; ?>
+
+                            <form method="POST" class="card-actions">
                                 <input type="hidden" name="plaggID" value="<?= $plagg['plaggID'] ?>">
-                                <select name="kundID" class="form-input-sm" required>
-                                    <option value="">Välj kund att hyra ut till...</option>
-                                    <?php foreach ($kunder as $k): ?>
-                                        <option value="<?= $k['kundID'] ?>"><?= htmlspecialchars($k['name']) ?> (#<?= $k['kundID'] ?>)</option>
-                                    <?php endforeach; ?>
-                                </select>
-                                <div class="date-row">
-                                    <input type="date" name="startdatum" class="form-input-sm" value="<?= date('Y-m-d') ?>" required>
-                                    <input type="date" name="slutdatum" class="form-input-sm" value="<?= date('Y-m-d', strtotime('+3 days')) ?>" required>
-                                </div>
-                                <button type="submit" name="boka_uthyrning" class="btn">Hyr ut plagg</button>
+                                <button type="submit" name="andra_status" value="1" onclick="this.form.nyStatus.value='Tvätt'" class="btn btn-secondary">
+                                    Måste tvättas
+                                </button>
+                                <button type="submit" name="andra_status" value="1" onclick="this.form.nyStatus.value='Trasig'" class="btn btn-danger">
+                                    Markera som trasig
+                                </button>
+                                <button type="submit" name="andra_status" value="1" onclick="if(!confirm('Ta bort plagget från lagret?')) return false; this.form.nyStatus.value='Borttagen';" class="btn btn-danger">
+                                    Ta bort plagg
+                                </button>
+                                <input type="hidden" name="nyStatus" value="">
                             </form>
-                        <?php endif; ?>
+                        </div>
                     </section>
                 <?php endforeach; ?>
             </div>
